@@ -31,6 +31,20 @@ p, span, a{
     color: #4a4647;
 }
 
+a{
+    text-decoration: none;
+    color: #4a4647;
+}
+
+.base_button_submit{
+    background: none;
+    font-size: 100%;
+    border: none;
+    color: #4a4647;
+    cursor: pointer;
+    font-family: 'NotoSansKR','Malgun Gothic',sans-serif;
+}
+
 h1, h2, h3, h4, h5, h6{
     font-family: 'Malgun Gothic',sans-serif;
     font-weight: 700;
@@ -48,6 +62,16 @@ header > nav{
     max-width: 935px;
     width: 100%;
     margin: 0 auto;
+}
+
+nav > ul{
+    float: right;
+}
+
+nav > ul > li{
+    float: left;
+    padding-left: 16px;
+    line-height: 72px;
 }
 
 .left-box, .right-box{
@@ -76,7 +100,6 @@ header > nav{
 
 
 .logo{
-    display: block;
 }
 
 .logo > img{
@@ -179,5 +202,16 @@ header > nav{
 @media(max-width: 935px) {
     .right-box{
         display: none;
+    }
+    .container{
+        margin: 0;
+    }
+    .left-box{
+        width: 100%;
+        padding: 0;
+    }
+    .post-wrap{
+        border: none;
+        background: none;
     }
 }

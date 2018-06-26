@@ -21,3 +21,6 @@ def sign_out(request):
     if request.method == 'POST':
         logout(request)
         return redirect('index')
+
+def sign_up(request):
+    pass

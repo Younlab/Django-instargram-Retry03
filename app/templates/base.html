@@ -12,22 +12,20 @@
 <body>
     <header>
         <nav>
-
             <a href="{% url 'index' %}" class="logo">
-
                 <img src="{% static 'source/instagram-logo-text-black-png.png' %}" alt="">
-
             </a>
             <ul>
                 {% if user.is_authenticated %}
                     <li>
                         <form action="{% url 'users:sign-out' %}" method="POST">
                             {% csrf_token %}
-                            <button type="submit">sign out</button>
+                            <button type="submit" class="base_button_submit">sign out</button>
                         </form>
                     </li>
                 {% else %}
                     <li><a href="{% url 'users:sign-in' %}">Sign in</a></li>
+                    <li><a href="">Sign up</a></li>
                 {% endif %}
             </ul>
         </nav>
