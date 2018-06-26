@@ -5,7 +5,7 @@ class User(AbstractUser):
     CHOICES_GENDER = (
         ('m', '남성'),
         ('f', '여자'),
-        ('x', '당신이 괜찮다면 설정해주세요.')
+        ('x', '당신이 괜찮다면 설정해주세요.'),
     )
     profile_image = models.ImageField(upload_to='profile_image', blank=True)
     site_url = models.URLField(blank=True)

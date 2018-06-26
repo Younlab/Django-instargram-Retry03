@@ -27,7 +27,6 @@ class UserAdmin(BaseUserAdmin):
                 'is_staff',
                 'is_superuser',
             ),
-
         }),
         ('주요 일자', {
             'fields': (

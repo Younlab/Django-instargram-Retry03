@@ -4,12 +4,10 @@ from .models import Post
 def post_list(request):
     posts = Post.objects.all()
     context = {
-        'post':posts,
+        'posts':posts,
     }
 
     return render(request, 'posts/post_list.html', context)
-
-    pass
 
 def post_create(request):
     pass

@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="left-box">
+    {% for post in posts %}
+        <article class="post-wrap">
+            <div class="author-box">
+                <div class="user-profile-image">
+                   <img src="{{ post.author.profile_image.url }}" alt="">
+                </div>
+                <h4>{{ post.author }}</h4>
+            </div>
+            <div class="image-box">
+                <img src="{{ post.photo.url }}" alt="" width="100%">
+            </div>
+            <div class="content-box">
+                <p>{{ post.content }}</p>
+            </div>
+            <div class="date">
+                <span>{{ post.created_at }}</span>
+            </div>
+        </article>
+    {% endfor %}
+    </div>
+    <div class="right-box">
+        <section>
+            <div class="login-user-box">
+                <div class="user-profile-image">
+                    <img src="{{ user.profile_image.url }}" alt="">
+                </div>
+                <div class="user-id">
+                    <h4>{{ user }}</h4>
+                    <h6>{{ user.last_name}} {{ user.first_name  }}</h6>
+                </div>
+            </div>
+        </section>
+    </div>
+
+{% endblock %}
