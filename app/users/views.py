@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 
@@ -16,3 +16,8 @@ def sign_in(request):
             return redirect('users:sign-in')
     else:
         return render(request, 'sign/sign_in.html')
+
+def sign_out(request):
+    if request.method == 'POST':
+        logout(request)
+        return redirect('index')
