@@ -24,6 +24,7 @@ from . import settings
 urlpatterns = [
     path('', views.index, name='index'),
     path('posts/', include('posts.urls')),
+    path('users/', include('users.urls')),
     path('admin/', admin.site.urls),
 ] + static(
     prefix=settings.MEDIA_URL,
