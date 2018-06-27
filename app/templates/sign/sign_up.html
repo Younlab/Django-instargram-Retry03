@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-    <form action="" method="POST" enctype="multipart/form-data">
+    <form action="" method="POST" enctype="multipart/form-data" class="sign-in-wrap">
     {% csrf_token %}
-    {% for field in form %}
-        <div>
-            {{ field.label }}
+        <h2>Sign Up</h2>
+
+        {% for field in form %}
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
             {{ field }}
-            {{ field.errors }}
-        </div>
-    {% endfor %}
+            <p>{{ field.errors }}</p>
+
+        {% endfor %}
     <button type="submit">
         Sign up
     </button>
