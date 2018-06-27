@@ -21,6 +21,12 @@ def post_create(request):
         return redirect('index')
     else:
         return render(request, 'posts/post_create.html')
+@login_required(login_url='/accounts/login/')
+def post_delete(request, pk):
+    if request.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        post.delete()
+    return redirect('index')
 
 def post_edit(request):
     pass

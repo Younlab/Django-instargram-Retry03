@@ -22,11 +22,12 @@
                             {% csrf_token %}
                             <button type="submit" class="base_button_submit">sign out</button>
                         </form>
+                        <li class="posting-button"><a href="{% url 'posts:post-create' %}">+</a></li>
                     </li>
-                    <li><a href="{% url 'posts:post-create' %}">posting</a></li>
                 {% else %}
                     <li><a href="{% url 'users:sign-in' %}">Sign in</a></li>
                     <li><a href="{% url 'users:sign-up' %}">Sign up</a></li>
+
                 {% endif %}
             </ul>
         </nav>

@@ -23,11 +23,6 @@ def sign_out(request):
         logout(request)
         return redirect('index')
 
-# def handle_uploaded_file(f):
-#     with open('profile_image/profile_image', 'wb+') as destination:
-#         for chunk in f.chunks():
-#             destination.write(chunk)
-
 def sign_up(request):
     if request.method == 'POST':
         form = SignupForm(request.POST, request.FILES)
