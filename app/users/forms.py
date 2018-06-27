@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 
-User = get_user_model
+User = get_user_model()
 
 class SignupForm(forms.Form):
     username = forms.CharField(label='ID')
@@ -13,10 +13,14 @@ class SignupForm(forms.Form):
     password2 = forms.CharField(label='Agein Password',
         widget=forms.PasswordInput()
     )
-    profile_image = forms.FileField(
-        widget=forms.ImageField(),
-        help_text='사진을 업로드 해주세요'
+
+    profile_image = forms.ImageField(
+        required=True,
     )
+
+    # gender = forms.ChoiceField(
+    #     widget=forms.ChoiceField(required=True)
+    # )
 
     email = forms.EmailField(label='E-mail')
 
@@ -42,12 +46,13 @@ class SignupForm(forms.Form):
         password = self.cleaned_data['password2']
         name = self.cleaned_data['name']
         email = self.cleaned_data['email']
-
+        profile_image = self.cleaned_data['profile_image']
         user = User.objects.create_user(
             username=username,
             password=password,
             last_name=name,
             email=email,
+            profile_image=profile_image,
+            gender=gender,
         )
-
         return user

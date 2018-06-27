@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import render, redirect
 from .models import Post
 
 def post_list(request):
@@ -9,8 +10,17 @@ def post_list(request):
 
     return render(request, 'posts/post_list.html', context)
 
+@login_required(login_url='/accounts/login/')
 def post_create(request):
-    pass
+    if request.method == 'POST':
+        Post.objects.create(
+            author=request.user,
+            photo=request.FILES['photo'],
+            content=request.POST['content'],
+        )
+        return redirect('index')
+    else:
+        return render(request, 'posts/post_create.html')
 
 def post_edit(request):
     pass
