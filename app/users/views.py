@@ -39,3 +39,9 @@ def sign_up(request):
         'form': form,
     }
     return render(request, 'sign/sign_up.html', context)
+
+def delete_user(request):
+    if request.method == 'POST':
+        user = User.objects.get(username=request.user.username)
+        user.delete()
+    return redirect('index')

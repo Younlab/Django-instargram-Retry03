@@ -24,10 +24,16 @@
                         </form>
                         <li class="posting-button"><a href="{% url 'posts:post-create' %}">+</a></li>
                     </li>
+                    <li>
+                        <form action="{% url 'users:delete-user' %}" method="POST">
+                            {% csrf_token %}
+                            <button class="base_button_submit">회원탈퇴</button>
+                        </form>
+                    </li>
+
                 {% else %}
                     <li><a href="{% url 'users:sign-in' %}">Sign in</a></li>
                     <li><a href="{% url 'users:sign-up' %}">Sign up</a></li>
-
                 {% endif %}
             </ul>
         </nav>
