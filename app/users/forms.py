@@ -53,6 +53,6 @@ class SignupForm(forms.Form):
             last_name=name,
             email=email,
             profile_image=profile_image,
-            gender=gender,
+
         )
         return user
