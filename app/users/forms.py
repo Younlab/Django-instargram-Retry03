@@ -6,10 +6,13 @@ User = get_user_model()
 
 class SignupForm(forms.Form):
     username = forms.CharField(label='ID')
+
     name = forms.CharField(label='Name')
+
     password = forms.CharField(label='Password',
         widget=forms.PasswordInput()
     )
+
     password2 = forms.CharField(label='Agein Password',
         widget=forms.PasswordInput()
     )
@@ -18,12 +21,15 @@ class SignupForm(forms.Form):
         required=True,
     )
 
+    gender = forms.ChoiceField(
+        required=False, choices=User.CHOICES_GENDER,
+    )
+
     # gender = forms.ChoiceField(
     #     widget=forms.ChoiceField(required=True)
     # )
 
-    email = forms.EmailField(label='E-mail')
-
+    email = forms.EmailField(label='E-mail', required=False)
 
     def clean(self):
         password = self.cleaned_data['password']
@@ -47,12 +53,15 @@ class SignupForm(forms.Form):
         name = self.cleaned_data['name']
         email = self.cleaned_data['email']
         profile_image = self.cleaned_data['profile_image']
+        gender = self.cleaned_data['gender']
+
         user = User.objects.create_user(
             username=username,
             password=password,
             last_name=name,
             email=email,
             profile_image=profile_image,
+            gender = gender
 
         )
         return user
