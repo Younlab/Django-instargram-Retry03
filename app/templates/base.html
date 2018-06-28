@@ -22,7 +22,6 @@
                             {% csrf_token %}
                             <button type="submit" class="base_button_submit">sign out</button>
                         </form>
-                        <li class="posting-button"><a href="{% url 'posts:post-create' %}">+</a></li>
                     </li>
                     <li>
                         <form action="{% url 'users:delete-user' %}" method="POST">
@@ -34,7 +33,10 @@
                 {% else %}
                     <li><a href="{% url 'users:sign-in' %}">Sign in</a></li>
                     <li><a href="{% url 'users:sign-up' %}">Sign up</a></li>
+
                 {% endif %}
+                    <li class="posting-button"><a href="{% url 'posts:post-create' %}">+</a></li>
+
             </ul>
         </nav>
     </header>

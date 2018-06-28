@@ -31,7 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 AUTH_USER_MODEL= 'users.User'
-
+LOGIN_URL = 'users:sign-in'
 
 # Application definition
 
@@ -108,6 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 
 
 # Internationalization

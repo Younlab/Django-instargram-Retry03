@@ -10,8 +10,16 @@ def sign_in(request):
 
         user = authenticate(request, username=username, password=password)
 
+        # 인증이 통과한 경우
         if user is not None:
+
+            # session_id값을 django_sessions테이블에 저장, 데이터는 user와 연결됨
+            # 이 함수 실행 후 돌려줄 HTTP Response에는 Set-Cookie헤더 추가, 내용은 sessionid=<session값>
             login(request, user)
+
+            next = request.GET.get('next')
+            if next:
+                return redirect(next)
             return redirect('index')
         else:
             return redirect('users:sign-in')

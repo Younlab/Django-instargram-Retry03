@@ -13,3 +13,8 @@ class PostForm(forms.Form):
             photo=self.cleaned_data['photo'],
             content=self.cleaned_data['content'],
         )
+
+class PostModelForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['photo', 'content']

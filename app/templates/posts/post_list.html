@@ -20,15 +20,18 @@
             <div class="date">
                 <span>{{ post.created_at }}</span>
                 {% if user == post.author %}
-                <form action="{% url 'posts:post-delete' post.pk %}" method="POST">
+
+                {% endif %}
+                            <form action="{% url 'posts:post-delete' post.pk %}" method="POST">
                     {% csrf_token %}
                     <button type="submit" class="delete_button">DELETE</button>
                 </form>
-                {% endif %}
             </div>
         </article>
     {% endfor %}
     </div>
+
+
     <div class="right-box">
         <section>
             <div class="login-user-box">
