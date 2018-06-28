@@ -108,4 +108,6 @@ class SignupForm(forms.Form):
         #     site_url=site,
         #
         # )
+        if self.cleaned_data['profile_image'] == None:
+            pass
         return user

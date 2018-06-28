@@ -35,11 +35,9 @@ def sign_up(request):
     if request.method == 'POST':
         form = SignupForm(request.POST, request.FILES)
         if form.is_valid():
-
             users = form.sign_up()
             login(request, users)
             return redirect('index')
-
     else:
         form = SignupForm()
 
