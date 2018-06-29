@@ -26,7 +26,7 @@ li, ol, ul{
     list-style: none;
 }
 
-p, span, a, label, textarea{
+p, span, a, label, textarea, input{
     font-family: 'NotoSansKR','Malgun Gothic',sans-serif;
     -webkit-font-smoothing: antialiased;
     color: #4a4647;
@@ -300,6 +300,58 @@ nav > ul > li{
 
 }
 
+.comments-wrap > p{
+
+}
+
+
+.comment-form > input{
+    height: 56px;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 8px 0;
+    outline: none;
+    font-size: 14px;
+    border: none;
+}
+
+.comment-user{
+
+}
+.comment-user::after{
+    content: '';
+    height: 1px;
+    display: block;
+    clear: both;
+}
+
+.comment-user> .img{
+    width: 32px;
+    height: 32px;
+    border-radius: 32px;
+    overflow: hidden;
+    float: left;
+}
+.comment-user> .img > img{
+    width: 120%;
+}
+
+.comment-user > .author{
+    float: left;
+    margin-top: 6px;
+    padding-left: 8px;
+    font-size: 85%;
+}
+.comment-user > .author > span{
+    font-size: 9px;
+    padding-left: 8px;
+    color: #333;
+}
+
+.comment-in{
+    clear: both;
+    padding-left: 42px;
+}
 @media(max-width: 935px) {
     .right-box{
         display: none;

@@ -1,13 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 
-from .models import Post
+from .models import Post, Comment
 from .forms import PostForm, PostModelForm
 
 def post_list(request):
-    posts = Post.objects.all().order_by('-created_at')
+    posts = Post.objects.all()
     context = {
         'posts':posts,
     }
@@ -49,30 +50,12 @@ def post_create(request):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('index')
+            return redirect('posts:post-list')
 
     context={
         'form':form,
     }
     return render(request, 'posts/post_create.html', context)
-# @require_POST
-# @login_required
-# def post_delete(request, pk):
-# #     if request.method == 'POST':
-# #         post = Post.objects.get(pk=pk)
-# #         post.delete()
-# #     return redirect('index')
-# #
-# # def post_edit(request):
-# #     pass
-# #
-# # def recent_post(request):
-# #     pass
-#     post = get_object_or_404(Post, pk=pk)
-#     if post.author != request.user:
-#         raise PermissionDenied('지울 권한이 없습니다.')
-#     post.delete()
-#     return redirect('posts:post-list')
 
 def post_delete(request, pk):
     if request.method == 'POST':
@@ -86,8 +69,24 @@ def post_delete(request, pk):
         else:
             return redirect('users:sign-in')
 
-    # if request.method != 'POST':
-    #     return HttpResponseNotAlloewd()
-    # if not request.user.is_authenticated:
-    #     return redirect('users:sign-in')
+
+def comment(request, post_pk):
+    if request.method == 'POST':
+        post = get_object_or_404(Post, pk=post_pk)
+        content = request.POST['content']
+        if not content:
+            raise PermissionDenied('내용을 입력해주세요')
+
+        if not request.user.username:
+            return redirect('users:sign-in')
+        Comment.objects.create(
+            post=post,
+            author=request.user,
+            content=content
+        )
+
+        return redirect('posts:post-list')
+
+
+
 

@@ -21,14 +21,36 @@
                 <p>{{ post.content }}</p>
             </div>
             <div class="date">
+
+
+                    <div class="comments-wrap">
+                    {% for comment in post.comments.all %}
+                        <div class="comment-user">
+                            <div class="img">
+                                {% if comment.author.profile_image %}
+                                <img src="{{ comment.author.profile_image.url }}" alt="">
+                                {% endif %}
+                            </div>
+
+                            <p class="author">{{ comment.author }}<span>{{ comment.created_at }}</span></p>
+                            <p class="comment-in">{{ comment }}</p>
+                        </div>
+
+                    {% endfor %}
+                        <form action="{% url 'posts:comment-create' post_pk=post.pk %}" method="POST" class="comment-form">
+                            {% csrf_token %}
+                            <input type="text" name="content" placeholder="Comment...">
+                        </form>
+                    </div>
+
+
                 <span>{{ post.created_at }}</span>
                 {% if user == post.author %}
-
-                {% endif %}
                 <form action="{% url 'posts:post-delete' post.pk %}" method="POST">
                     {% csrf_token %}
                     <button type="submit" class="delete_button">DELETE</button>
                 </form>
+                {% endif %}
             </div>
         </article>
     {% endfor %}
