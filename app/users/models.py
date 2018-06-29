@@ -22,6 +22,12 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+    def follow(self, to_user):
+        return self.relations_by_from_user.create(
+            to_user=to_user,
+            relation_type=Relation.RELATION_TYPE_FOLLOW
+        )
+
     @property
     def following_relations(self):
         # 내가 follow중인 relation query리턴
@@ -45,13 +51,15 @@ class User(AbstractUser):
     @property
     def following(self):
         return User.objects.filter(
-            pk__in=self.following_relations.values('to_user')
+            relations_by_to_user__from_user=self,
+            relations_by_to_user__relation_type=Relation.RELATION_TYPE_FOLLOW,
         )
 
     @property
     def followers(self):
         return User.objects.filter(
-            pk__in=self.follower_relations.values('from_user')
+            relations_by_to_from_user__to_user=self,
+            relations_by_to_from__relation_typr=Relation.RELATION_TYPE_FOLLOW,
         )
 
     @property
