@@ -51,3 +51,14 @@ def delete_user(request):
         user = User.objects.get(username=request.user.username)
         user.delete()
     return redirect('index')
+# pk를 받는다는 것은 무슨 의미?
+def follow_toggle(request):
+    """
+    GET 요청은 처리하지않는다.
+    POST 요청일때
+        request.POST로 'user.pk'값을 전달받음
+            pk가 user_pk인 User를 user에 전달
+        request
+    :param request:
+    :return:
+    """

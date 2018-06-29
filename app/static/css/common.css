@@ -212,7 +212,7 @@ nav > ul > li{
 
 }
 
-.sign-in-wrap > input{
+.sign-in-wrap > input, select{
     width: 60%;
     height: 40px;
     margin: 8px auto;
@@ -221,6 +221,7 @@ nav > ul > li{
     border-radius:3px;
     border: 1px solid #e6e6e6;
     box-sizing: border-box;
+    background: none;
 }
 
 .sign-in-wrap > label{
