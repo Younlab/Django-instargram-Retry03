@@ -62,3 +62,4 @@ def follow_toggle(request):
     :param request:
     :return:
     """
+    pass

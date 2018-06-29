@@ -1,6 +1,9 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from users.exceptions import RelationNotExist, DuplicateRelationException
+
+
 class User(AbstractUser):
     CHOICES_GENDER = (
         ('m', '남성'),
@@ -23,10 +26,23 @@ class User(AbstractUser):
         return self.username
 
     def follow(self, to_user):
-        return self.relations_by_from_user.create(
+        if self.relations_by_from_user.filter(to_user=to_user).exists():
+            raise DuplicateRelationException(from_user=self, to_user=to_user, relation_type='follow')
+
+
+    def unfollow(self, to_user):
+        q = self.relations_by_from_user.filter(
             to_user=to_user,
-            relation_type=Relation.RELATION_TYPE_FOLLOW
+            relation_type=Relation.RELATION_TYPE_FOLLOW,
         )
+        if q:
+            q.delete()
+        else:
+            raise RelationNotExist(
+                from_user=self,
+                to_user=to_user,
+                relation_type='Follow',
+            )
 
     @property
     def following_relations(self):
