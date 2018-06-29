@@ -31,4 +31,16 @@ class RelationTestCase(TestCase):
         # # relation이 u1.following_relations에 포힘되어있는지
         # self.assertIn(relation, u1.following_relations)
 
-        relation = u1.follow(u2)
+        # relation = u1.follow(u2)
+
+    def test_follow_only_once(self):
+        u1 = User.objects.create_user(username='u1')
+        u2 = User.objects.create_user(username='u2')
+
+        # u2로의 follow를 두번 실행한다.
+        u1.follow(u2)
+        u1.follow(u2)
+
+        # u1의 following이 하나인지 확인
+        self.assertEqual(u1.following.count(), 1)
+

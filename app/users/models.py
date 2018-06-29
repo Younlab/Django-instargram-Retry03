@@ -101,3 +101,8 @@ class Relation(models.Model):
             to_user=self.to_user.username,
             type=self.get_relation_type_display(),
         )
+
+    class Meta:
+        unique_together=(
+            ('from_user', 'to_user'),
+        )
