@@ -3,7 +3,6 @@ from django.db import models
 
 from users.exceptions import RelationNotExist, DuplicateRelationException
 
-
 class User(AbstractUser):
     CHOICES_GENDER = (
         ('m', '남성'),

@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import render, redirect
-from .forms import SignupForm
+from ..forms import SignupForm
 User = get_user_model()
 
 def sign_in(request):
